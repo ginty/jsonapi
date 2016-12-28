@@ -163,10 +163,11 @@ func unmarshalNode(data *Node, model reflect.Value, included *map[string]*Node) 
 				continue
 			}
 
-			if data.Type != args[1] {
-				er = fmt.Errorf("Trying to Unmarshal an object of type %#v, but %#v does not match", data.Type, args[1])
-				break
-			}
+			// Don't bother checking type, doesn't handle pluralization correctly
+			//if data.Type != args[1] {
+			//	er = fmt.Errorf("Trying to Unmarshal an object of type %#v, but %#v does not match", data.Type, args[1])
+			//	break
+			//}
 
 			if fieldValue.Kind() == reflect.String {
 				fieldValue.Set(reflect.ValueOf(data.ID))
